@@ -51,10 +51,10 @@ public class Romain {
 			texte += "\nMais heureusement, grâce à mon équipement ";
 			for (int i = 0; i < nbEquipement; i++) {
 				if (equipements[i] != null && equipements[i].equals(Equipement.BOUCLIER)) {
-					resistanceEquipement += 8;
+					resistanceEquipement += 6;
 				} else {
 					System.out.println("Equipement casque");
-					resistanceEquipement += 5;
+					resistanceEquipement += 3;
 				}
 			}
 			if (resistanceEquipement >= forceCoup) {

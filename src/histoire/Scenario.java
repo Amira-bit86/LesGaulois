@@ -30,7 +30,11 @@ public class Scenario {
 			forceAvantCoup = minus.getForce();
 			asterix.frapper(minus);
 		} while (minus.getForce() > 0 && minus.getForce() < forceAvantCoup);
-
+		if (minus.getForce() > 0) {
+			minus.parler("Alors Asterix on fait moins le malin face à mon équipement, Hi ! Hi !");
+			obelix.parler("Asterix, tu veux un peu d'aide ?");
+			obelix.frapper(minus);
+		}
 //		PARTIE 5 : a decommenter
 //		milexcus.parler("UN GAU... UN GAUGAU...");
 //		do {
