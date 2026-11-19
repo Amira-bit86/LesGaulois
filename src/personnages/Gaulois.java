@@ -1,10 +1,13 @@
 package personnages;
 
+import objets.Equipement;
 import village_gaulois.Village;
 
 public class Gaulois {
 	private String nom;
 	private int force;
+	private int nbTrophees;
+	private Equipement[] trophees = new Equipement[100];
 	private int effetPotion = 1;
 	private Village village;
 
@@ -31,9 +34,13 @@ public class Gaulois {
 
 	public void frapper(Romain romain) {
 		System.out.println(nom + " envoie un grand coup dans la mâchoire de " + romain.getNom());
-		romain.recevoirCoup((force * effetPotion) / 3);
-		if (effetPotion > 1) {
-			effetPotion--;
+		Equipement[] tropheesBataille = romain.recevoirCoup((force / 3) * effetPotion);
+		effetPotion--;
+		if (effetPotion < 1) {
+			effetPotion = 1;
+		}
+		for (int i = 0; tropheesBataille != null && i < tropheesBataille.length; i++, nbTrophees++) {
+			this.trophees[nbTrophees] = tropheesBataille[i];
 		}
 	}
 
@@ -41,15 +48,6 @@ public class Gaulois {
 		effetPotion = forcePotion;
 	}
 
-	@Override
-	public String toString() {
-		return nom;
-	}
-
-	public static void main(String[] args) {
-		Gaulois asterix = new Gaulois("Astérix", 8);
-		System.out.println(asterix);
-	}
 	public void sePresenter() {
 		String texte = "Bonjour, je m'appelle " + nom + ". ";
 		if (village == null) {
@@ -60,5 +58,10 @@ public class Gaulois {
 			texte += "J'habite le village : " + village.getNom() + ".";
 		}
 		parler(texte);
+	}
+
+	public static void main(String[] args) {
+		Gaulois asterix = new Gaulois("Astérix", 8);
+		System.out.println(asterix);
 	}
 }
